@@ -1,9 +1,3 @@
-// Require the following npm packages inside of the server.js file:
-// express
-// method-override
-// body-parser
-
-
 // DEPENDENCIES
 // ==============================================
 var express = require('express');
@@ -13,4 +7,31 @@ var mysql = require('mysql');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
-var sqlPassword = require('./password.js');
+
+// SETUP EXPRESS SERVER
+// ==============================================
+var app = express();
+
+// Serve static content for the app from the "public" directory in the application directory.
+app.use(express.static(process.cwd() + '/public'));
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// override with POST having ?_method=DELETE
+app.use(methodOverride('_method'));
+
+// Tells app to use handlebars to create the layout
+app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
+
+
+// Import and use router from controller.js file
+var router = require('./controllers/burger_controller.js');
+app.use('/', router);
+
+
+// DEFINE PORT AND START SERVER LISTEN
+// ==============================================
+var port = 3000;
+app.listen(port);
