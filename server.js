@@ -33,5 +33,5 @@ app.use('/', router);
 
 // DEFINE PORT AND START SERVER LISTEN
 // ==============================================
-var port = 3000;
+var PORT = 3000;
 app.listen(process.env.PORT || PORT);

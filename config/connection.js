@@ -1,6 +1,5 @@
 // connection to the database exported to be used by ORM
 
-var sqlPassword = require('./password.js');
 var mysql = require('mysql');
 var connection = mysql.createConnection({
 	port: 3306,
