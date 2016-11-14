@@ -7,7 +7,7 @@
 		<!-- column -->
 		<div class="col-md-12 text-center">
 			<!-- image -->
-		  	<img src="/assets/img/burger.jpg" width="200" height="200"/>
+		  	<img src="/assets/img/burger.png" width="200" height="200"/>
 		<!-- end column -->
 		</div>
 	<!-- end row 1 -->
@@ -24,49 +24,75 @@
 	<!-- end row 2 -->
   	</div>
 
-	<!-- row 3 - burgers -->
+	<!-- row 3 - burgers display here -->
 	<div class="row">
 		<!-- column 1 -->
 		<div class="col-md-6 text-center">
 
-				
+			<h2>Tasty Burgers!</h2>
+
+			<ol>
+				{{#each burgers}}
+					{{#unless this.devoured}}
+						<li>
+							<h3>
+							{{this.burger_name}}
+
+							<form action="burgers/update{{this.id}}?_method=PUT" method="POST">
+								<input type="hidden" name="devoured" value="true">
+								<button type="submit" class="btn btn-primary">Devour it!</button>
+							</form>
+							</h3>
+						</li>
+					{{/unless}}
+				{{/each}}
+			</ol>				
 		<!-- end column 1 -->
 		</div>			
 		
 		<!-- column 2 -->
 		<div class="col-md-6 text-center">
-			<ul>
-				
-			</ul>
+
+			<h2>Devoured Burgers!</h2>
+
+			<ol>
+				{{#each burgers}}
+					{{#if this.devoured}}
+						<li>
+							<h3>
+							{{this.burger_name}}
+							Om Nom Nom!
+							<h3>
+						</li>
+					{{/if}}
+				{{/each}}
+			</ol>
 		<!-- end column 2 -->
 		</div>	
 		
 	<!-- end row 3 -->
   	</div>
 
-	<!-- row 4 - user textbox -->
+	<!-- row 4 - USER TEXTBOX -->
 	<div class="row">
 		<!-- column -->
 		<div class="col-md-12 text-center">
-			<!-- textbox -->
-		  	<input type="text" name="inputburger" class="resize">
+			<h1>Add a Burger</h1>
+			<form class="create-update-form" action="burgers/create" method="POST">
+
+				<div class="form-group">
+					<label for="burger">Burger Name:</label>
+					<input type="text" id="burger" name="name">
+				</div>
+
+				<button type="submit" class="btn btn-primary">Add Burger</button>
+			</form>
 		<!-- end column -->
 		</div>
 	<!-- end row 4 -->
   	</div>
 
-	<!-- row 5 - submit button -->
-	<div class="row">
-		<!-- column -->
-		<div class="col-md-12 text-center">
-			<!-- submit button -->
-			<input type="submit" name="submit">
-		<!-- end column -->
-		</div>
-	<!-- end row 5 -->
-  	</div>
-
-  	<!-- row 6 - submit button -->
+  	<!-- row 6 - USER INSTRUCTIONS -->
 	<div class="row">
 		<!-- column -->
 		<div class="col-md-12 text-center">
