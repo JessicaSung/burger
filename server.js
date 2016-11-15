@@ -35,3 +35,4 @@ app.use('/', router);
 // ==============================================
 var PORT = 3000;
 app.listen(process.env.PORT || PORT);
+console.log("Local host:" + PORT);
