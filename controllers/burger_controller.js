@@ -42,7 +42,14 @@ router.put('/burgers/update/:id', function (req, res) {
 	});
 });
 
+// DELETE - deleteOne
+router.delete('/burgers/delete/:id', function (req, res) {
+	var condition = 'id = ' + req.params.id;
 
+	burger.deleteOne(condition, function () {
+		res.redirect('/burgers');
+	});
+});
 
 
 // Export router
